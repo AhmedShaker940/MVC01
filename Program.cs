@@ -1,11 +1,15 @@
+using MVC01.CustomMiddelWares;
+
 namespace MVC01
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
 
+            
+            var builder = WebApplication.CreateBuilder(args);
+            
             // Add services to the container.wdaw
             builder.Services.AddControllersWithViews();
 
@@ -14,6 +18,17 @@ namespace MVC01
             builder.Services.AddRazorPages(); // Razor Pages
 
             var app = builder.Build();
+
+            #region Custom MiddelWares
+            //app.Use(async (context, next) => {
+            //    // 1) Step01 
+            //    Console.WriteLine("Hello");
+            //    await next();
+            //    Console.WriteLine("Bye");
+            //});
+
+            app.UseMiddleware<RequestTimingMiddelWare>();
+            #endregion
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -33,6 +48,9 @@ namespace MVC01
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            
+
 
             app.Run();
         }
