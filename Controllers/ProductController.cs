@@ -2,7 +2,7 @@
 
 namespace MVC01.Controllers
 {
-    [Route ("Prod")]
+    [Route("Prod")]
     public class ProductController : Controller
     {
         #region Actions
@@ -45,8 +45,32 @@ namespace MVC01.Controllers
         // BaseUrl/Product/JsonAction -- Convential Routing
         // BaseUrl/Prod/JsonAction -- Attribute Routing
         // BaseUrl/Product/Json -- Attribute Routing
-        public IActionResult JsonAction() {
+        public IActionResult JsonAction()
+        {
             return Json("Hello FromJson Action");
+        }
+
+        #endregion
+
+        #region ModelBinding
+        //BaseUrl/Product/Search?/Name=Iphone17&Color=Black
+        //BaseUrl/Product/Search?/Name=Iphone17&Storage=512
+        //BaseUrl/Product/Search?/Storage=512
+
+        public IActionResult Search(ProductFilter filter)
+        { 
+            return View();
+        }
+        //Route
+        //BaseUrl/Product/GetById/10         -> Id = 0 , otherId = 0
+        //BaseUrl/Product/GetById?id=20        -> Id = 20 , otherId = 0
+        //BaseUrl/Product/GetById?otherId=20        -> Id = 0 , otherId = 0
+        //BaseUrl/Product/GetById?id2=20&id=50       -> Id = 50 , otherId = 20
+
+
+        public IActionResult GetById([FromQuery]int id , [FromQuery (Name ="id2")] int otherId)
+        {
+            return Json("");
         }
 
         #endregion
