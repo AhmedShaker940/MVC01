@@ -6,7 +6,7 @@ namespace MVC01
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Add services to the container.wdaw
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddControllers(); // API

@@ -5,11 +5,11 @@ namespace MVC01.Controllers
     public class ProductController : Controller
     {
         //Action
-        //GET --> BaseUrl/Product/TestAction
+        //GET --> BaseUrl/Product/Index
         [HttpGet] // Default
-        public string TestAction()
+        public string Index()
         {
-            return "Hello";
+            return "Hello From Index";
         }
     }
 }
